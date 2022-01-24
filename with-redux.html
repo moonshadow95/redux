@@ -28,7 +28,11 @@
         }
         return newState
     }
-    const store = Redux.createStore(reducer)
+    const store = Redux.createStore(
+        reducer,
+        window.__REDUX_DEVTOOLS_EXTENSION__ &&
+        window.__REDUX_DEVTOOLS_EXTENSION__()
+    )
     function red() {
         const state = store.getState()
         document.querySelector('#red').innerHTML = `
