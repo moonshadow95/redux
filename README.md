@@ -1,4 +1,6 @@
-# Redux
+<img src="https://img.shields.io/badge/REDUX-764ABC?style=for-the-badge&logo=REDUX&logoColor=white">
+
+# <img width="32px" alt="redux" src="https://user-images.githubusercontent.com/73153617/150921979-348c3796-1478-49a8-ae0a-6e3203cf59ed.png"> Redux
 JS로 만든 어플리케이션을 위한, 예측 가능한 상태의 저장소
 
 눈에 보이지 않는 ‘복잡성’을 낮추어 코드가 어떤 결과를 가져올지 예측 가능하게 만들어준다.
