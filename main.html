@@ -57,27 +57,43 @@
                     type:'DELETE',
                 })
             " /></li>
+            <li><input type='button' value="update" onclick="
+                store.dispatch({
+                    type:'UPDATE',
+                    mode:'UPDATE_MODE'
+                })
+            " /></li>
         </ul>
         `
     }
     function article(){
         const state = store.getState()
-        if(state.mode === 'create'){
+        if(state.mode === ('create' || 'update')){
             document.querySelector('#content').innerHTML = `
                 <article>
                     <form action="" onsubmit="
                         event.preventDefault()
-                        let _title = this.title.value
-                        let _desc = this.desc.value
-                        store.dispatch({
-                            type: 'CREATE',
-                            title: _title,
-                            desc: _desc
-                        })
+                        if(state.mode === 'create'){
+                            let _title = this.title.value
+                            let _desc = this.desc.value
+                            store.dispatch({
+                                type: 'CREATE',
+                                title: _title,
+                                desc: _desc
+                            })
+                        } else if(state.mode === 'update'){
+                            let _title = this.title.value
+                            let _desc = this.desc.value
+                            store.dispatch({
+                                type: 'UPDATE',
+                                title: _title,
+                                desc: _desc
+                            })
+                        }
                     ">
                         <div style="display:flex; flex-direction: column; width: 200px;">
-                            <input type="text" name="title" placeholder="title">
-                            <textarea name="desc" cols="30" rows="10" placeholder="description"></textarea>
+                            <input type="text" name="title" placeholder="title" value="${state.contents.find(content=>content.id===state.selected_id).title}">
+                            <textarea name="desc" cols="30" rows="10" placeholder="description">${state.contents.find(content=>content.id===state.selected_id).desc}</textarea>
                             <input type="submit" value="submit">
                         </div>
                     </form>
@@ -152,6 +168,12 @@
             newState = Object.assign({},state,{
                 mode:'create'
             })
+        }else if(action.type === 'UPDATE_MODE'){
+            for(let i = 0; i<state.contents.length; i++){
+                if(state.selected_id === state.contents[i].id){
+
+                }
+            }
         }
         return newState
     }
